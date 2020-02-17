@@ -13,16 +13,20 @@ interface MqttComponentProps {
     topic: any;
     componentProps?: any;
     publishOptions?: IClientPublishOptions;
+    noRBE?: boolean;
+    children?: any;
 }
 
 
 
 const MqttComponent: React.FC<MqttComponentProps> = (props: MqttComponentProps)=>{
     const mqtt: IMqttContext = useContext(MqttContext);
+    const [timesCalled, setTimesCalled] = useState<number>(0);
     const [value, setValue] = useState<any>(null);
     const [remoteValue, setRemoteValue] = useState<string>('');
     const onChange = (event: any, value: number | string) => {
 	setValue(value);
+	setTimesCalled(timesCalled + 1);
     }
 
     const lastValue = usePrevious(value);
@@ -43,11 +47,11 @@ const MqttComponent: React.FC<MqttComponentProps> = (props: MqttComponentProps)=
 
     useEffect(()=>{
 	if(mqtt.client && (value || typeof value == 'number')){
-	    if(value != lastValue && value != remoteValue){
+	    if((value != lastValue && value != remoteValue) || props.noRBE){
 		mqtt.client.publish(props.topic, value.toString(), props.publishOptions || {qos: 0})
 	    }	
 	}
-    }, [mqtt, value])
+    }, [mqtt, value, timesCalled])
 
 
     useEffect(()=>{
@@ -66,7 +70,7 @@ const MqttComponent: React.FC<MqttComponentProps> = (props: MqttComponentProps)=
     }, [mqtt, setValue, setRemoteValue])
 
     return (<div>
-	<props.component onChange={onChange} value={value} {...props.componentProps}> </props.component>
+	<props.component onChange={onChange} value={value} {...props.componentProps}>{props.children}</props.component>
     </div>)
 }
 

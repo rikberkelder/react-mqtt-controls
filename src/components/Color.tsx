@@ -90,7 +90,7 @@ const ColorSlider: React.FC<ColorProps> = (props) => {
 		<Paper style={{backgroundColor: `#${hexValue}`, height: '95%', width: '100%', minHeight: (props.height || 36.5),  transition: 'all 0.1s linear'}}>
 		</Paper>
 	    </Grid>
-	    <Grid item xs={12} md={10}>
+	    <Grid item xs={12} md={11}>
 		<Slider min={0} max={359} styleOverride={hueStyleOverride} onChange={handleHue} height={props.height} value={hue}></Slider>
 		<Slider min={0} max={100} styleOverride={whiteStyleOverride} onChange={handleSaturation} height={props.height} value={saturation}></Slider>
 		{props.brightness ? <Slider min={0} max={100} styleOverride={valueStyleOverride} onChange={handleValue} height={props.height} value={value}></Slider> : null}

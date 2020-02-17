@@ -1,6 +1,6 @@
 import React, {useState, useContext} from 'react';
 
-import Button from '@material-ui/core/Button';
+import Button from './components/Button';
 import Slider from './components/BaseSlider';
 import Color from './components/Color';
 import Container from '@material-ui/core/Container';
@@ -59,9 +59,27 @@ const App: React.FC = () => {
 				    topic="/rik/stelling/colour"
 				    component={Color}
 				    componentProps={{
-					brightness: true
+					brightness: true,
+				    }}
+				    publishOptions={{
+					qos: 0,
+					retain: true
 				    }}
 				>
+				</MqttComponent>
+			    </Grid>
+			    test
+			    <Grid item xs={12}>
+				test
+				<MqttComponent
+				    topic="/rik/mqttbutton/test"
+				    noRBE
+				    component={Button}
+				    componentProps={{
+					value: "test"
+				    }}
+				>
+				    test
 				</MqttComponent>
 			    </Grid>
 			</Grid>
