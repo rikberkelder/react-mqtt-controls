@@ -47,7 +47,7 @@ const MqttComponent: React.FC<MqttComponentProps> = (props: MqttComponentProps)=
 
     useEffect(()=>{
 	if(mqtt.client && (value || typeof value == 'number')){
-	    if((value != lastValue && value != remoteValue) || props.noRBE){
+	    if((props.noRBE || value != lastValue) && value != remoteValue){
 		mqtt.client.publish(props.topic, value.toString(), props.publishOptions || {qos: 0})
 	    }	
 	}

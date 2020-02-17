@@ -14,7 +14,11 @@ const RBButton: React.FC<ButtonProps> = (props) => {
 	}
     }
 
-    return <Button variant="contained" onClick={onClick}>{props.children}</Button>;
+    return <Button
+	       variant="contained"
+	style={{width: "100%"}}
+	       onClick={onClick}
+	   >{props.children}</Button>;
 }
 
 export default RBButton;
