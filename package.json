@@ -1,10 +1,10 @@
 {
-    "name": "tablet-dash",
-    "version": "0.1.0",
+    "name": "react-mqtt-controls",
+    "version": "0.0.2",
     "private": false,
     "licence": "GPL-3.0-or-later",
     "main": "dist/index.js",
-    "types": "dist/index.js",
+    "types": "dist/index.d.ts",
     "dependencies": {
 	"async-mqtt": "^2.4.2",
 	"color-convert": "^2.0.1",
@@ -16,6 +16,7 @@
     "scripts": {
 	"clean": "rimraf dist",
 	"compile": "tsc",
+	"prepublish": "npm run build",
 	"build": "run-s clean compile"
     },
     "devDependencies": {
