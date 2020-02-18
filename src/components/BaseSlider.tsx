@@ -58,7 +58,8 @@ const RBSlider: React.FC<SliderProps> = (props) => {
 	}
 
 	useEffect(()=>{
-		if(parsedPropsValue || typeof props.value === 'number'){
+	    console.log(parsedPropsValue);
+		if(typeof parsedPropsValue === 'number' || typeof props.value === 'number'){
 			setValue(parsedPropsValue)
 		}
 	}, [parsedPropsValue])

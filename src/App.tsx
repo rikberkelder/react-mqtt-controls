@@ -2,6 +2,7 @@ import React, {useState, useContext} from 'react';
 
 import Button from './components/Button';
 import Slider from './components/BaseSlider';
+import Switch from './components/Switch';
 import Color from './components/Color';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
@@ -25,7 +26,7 @@ const App: React.FC = () => {
 			    <text x="0" y="15" style={{fill: '#fff'}}></text>
 			</svg>
 			{mqtt.status}
-			<Grid container spacing={3}>
+			<Grid container spacing={2}>
 			    <Grid item xs={12}>
 				<Typography gutterBottom>
 				    Slider
@@ -55,7 +56,8 @@ const App: React.FC = () => {
 					retain: true
 				    }}
 				></MqttComponent>
-
+			    </Grid>
+			    <Grid item xs={12}>
 				<MqttComponent
 				    topic="/rik/stelling/colour"
 				    component={Color}
@@ -91,6 +93,17 @@ const App: React.FC = () => {
 				    }}
 				>
 				    test
+				</MqttComponent>
+			    </Grid>
+			    <Grid item xs={12}>
+				<MqttComponent
+				    topic="/rik/stelling/brightness"
+				    component={Switch}
+				    componentProps={{
+					highValue: "100",
+					lowValue: "0"
+				    }}
+				>
 				</MqttComponent>
 			    </Grid>
 			</Grid>

@@ -85,7 +85,7 @@ const ColorSlider: React.FC<ColorProps> = (props) => {
     }
 
     return (
-	<Grid container spacing={1} className="ColorSlider">
+	<Grid container spacing={2} className="ColorSlider">
 	    <Grid item xs={12} md={1} style={{marginBottom: 0, paddingBottom:0 }}>
 		<Paper style={{backgroundColor: `#${hexValue}`, height: '95%', width: '100%', minHeight: (props.height || 36.5),  transition: 'all 0.1s linear'}}>
 		</Paper>
