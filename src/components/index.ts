@@ -1,4 +1,5 @@
-export * from './BaseSlider';
-export * from './Button';
-export * from './Color';
-export * from './Switch';
+export { Slider} from './BaseSlider';
+export { Button} from './Button';
+export { Color} from './Color';
+export { Switch} from './Switch';
+export { MqttComponent} from './MqttComponent';

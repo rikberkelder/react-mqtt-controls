@@ -1,2 +1,8 @@
 export * from './MqttContext';
-export * from './components';
+export {
+    MqttComponent,
+    Color,
+    Slider,
+    Button,
+    Switch
+} from './components';

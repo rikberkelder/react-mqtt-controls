@@ -1,17 +1,40 @@
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import React, { useState, useEffect } from 'react';
-import Slider from './BaseSlider';
+import {Slider} from './BaseSlider';
 import {hsv, hex} from 'color-convert';
 
 interface ColorProps {
+    /**
+     * The height of each input slider
+     */
+
     height?: number;
-    onChange?: any;
+
+    /**
+     * Called when color is changed
+     */
+
+    onChange(event: any, value: string): void;
+
+    /**
+     * Input value
+     */
+
     value?: string;
+
+    /**
+     * Show or hide the brightness slider (black to color);
+     */
+
     brightness?: boolean;
 }
 
-const ColorSlider: React.FC<ColorProps> = (props) => {
+/**
+ * A color picker. Outputs colour in hex
+ */
+
+export const Color: React.FC<ColorProps> = (props) => {
     const [hue, setHue] = useState(0);
     const [saturation, setSaturation] = useState(100);
     const [value, setValue] = useState(100);
@@ -99,5 +122,3 @@ const ColorSlider: React.FC<ColorProps> = (props) => {
     )
     
 }
-
-export default ColorSlider;

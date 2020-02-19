@@ -1,17 +1,55 @@
-import Slider from '@material-ui/core/Slider';
+import MUISlider from '@material-ui/core/Slider';
 import { makeStyles } from '@material-ui/core/styles';
 import { merge } from 'lodash';
 import React, { useEffect, useState } from 'react';
 
 interface SliderProps {
+    /**
+     * The minimum output value
+     */
+
     min?: number;
+
+    /**
+     * The maximum output value
+     */
+
     max?: number;
+
+    /**
+     * The increment at which the slider moves
+     */
+
     step?: number;
+
+    /**
+     * Adds this to the input of makeStyles
+     */
+
     styleOverride?: any; 
-    onChange?: any;
+
+    /**
+     * Called when slider gets moved.
+     */
+
+    onChange(event: any, value: number): void;
+
+    /**
+     * Height in px
+     */
+
     height?: number;
+
+    /**
+     * The input value of the component
+     */
+
     value?: number;
 }
+
+/**
+ *  Generate the styling for the component
+ */
 
 const useStyles = makeStyles({
     root: (props: any) => (merge({
@@ -41,7 +79,13 @@ const useStyles = makeStyles({
     }, props.styleOverride))
 })
 
-const RBSlider: React.FC<SliderProps> = (props) => {
+/**
+ * A slider input. Can be used to set the value between a minimum and a maximum.
+ *
+ * ```<Slider onChange={(event, value)=>{console.log(value)}} />```
+ */
+
+export const Slider: React.FC<SliderProps> = (props) => {
 	let parsedPropsValue = 0;
 	if(props.value || typeof props.value === 'number'){
 		parsedPropsValue = typeof props.value === 'number' ? props.value : parseInt(props.value, 10)
@@ -67,8 +111,6 @@ const RBSlider: React.FC<SliderProps> = (props) => {
 	const styles = useStyles({height: props.height, styleOverride: props.styleOverride})
 
 	return (
-		<Slider min={props.min} max={props.max} value={value as number} onChange={onChange} onChangeCommitted={onRelease} className={styles.root}> </Slider>
+		<MUISlider min={props.min} max={props.max} value={value as number} onChange={onChange} onChangeCommitted={onRelease} className={styles.root}/>
 	)
 }
-
-export default RBSlider;

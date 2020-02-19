@@ -1,13 +1,37 @@
 import React, {useState, useEffect} from 'react';
-
-import Switch from '@material-ui/core/Switch';
 import {makeStyles} from '@material-ui/core/styles';
 
 interface SwitchProps{
+    /**
+     * The height of the control in px
+     */
+
     height?: number;
-    onChange?: any;
+
+    /**
+     * Gets called when toggled
+     */
+
+    onChange(event: any, value: string | number): void;
+
+    /**
+     * Input value
+     */
+
     value?: any;
+
+    /**
+     * Value when toggled off
+     * @defaultValue "off"
+     */
+
     lowValue?: any;
+
+    /**
+     * Value when toggled on
+     * @defaultValue "on"
+     */
+
     highValue?: any;
 }
 
@@ -32,7 +56,11 @@ const useStyles = makeStyles({
     })
 })
 
-const RBSwitch: React.FC<SwitchProps> = (props) => {
+/**
+ * A switch. Toggles when clicked, or when input value matches the `lowValue` or `highValue` props.
+ */
+
+export const Switch: React.FC<SwitchProps> = (props) => {
 
     const [status, setStatus] = useState(false);
 
@@ -67,5 +95,3 @@ const RBSwitch: React.FC<SwitchProps> = (props) => {
 	</div>
     );
 }
-
-export default RBSwitch;

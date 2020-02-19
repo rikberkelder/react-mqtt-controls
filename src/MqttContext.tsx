@@ -9,16 +9,31 @@ export enum MqttStatus {
 }
 
 export interface IMqttConfig {
+    /**
+     * The URL of the MQTT server (Must have websocket support)
+     */
+
     url: string | null;
-	prefix?: string;
-	publishPrefix?: string;
-	subscribePrefix?: string;
 }
 
 export interface IMqttContext {
-	config: IMqttConfig;
-	status: MqttStatus;
-	client: AsyncMqttClient | null;
+    /**
+     * The MQTT Client configuration
+     */
+
+    config: IMqttConfig;
+
+    /**
+     * The status of the MQTT connection
+     */
+
+    status: MqttStatus;
+
+    /**
+     * The client to be used by components
+     */
+
+    client: AsyncMqttClient | null;
 }
 
 export interface IMqttProps {
@@ -27,15 +42,18 @@ export interface IMqttProps {
 }
 
 export const MqttContext = React.createContext<IMqttContext>({
-	config: {
-		url: null
-	},
-	status: MqttStatus.offline,
-	client: null,
+    config: {
+	url: null
+    },
+    status: MqttStatus.offline,
+    client: null,
 })
 
 export const MqttConsumer = MqttContext.Consumer;
 
+/**
+ * The context provider for all MQTT components. This should probably be somewhere at the top of your app. 
+ */
 
 export const MqttConnection: React.FC<IMqttProps> = (props: IMqttProps) => {
 	const [mqttStatus, setMqttStatus] = useState<MqttStatus>(MqttStatus.offline)

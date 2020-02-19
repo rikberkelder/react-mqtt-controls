@@ -1,6 +1,6 @@
 {
     "name": "react-mqtt-controls",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "private": false,
     "licence": "GPL-3.0-or-later",
     "main": "dist/index.js",
@@ -16,8 +16,9 @@
     "scripts": {
 	"clean": "rimraf dist",
 	"compile": "tsc",
-	"prepublish": "npm run build",
-	"build": "run-s clean compile"
+	"prepare": "npm run build",
+	"docs": "typedoc --out docs ./src",
+	"build": "run-s clean compile docs"
     },
     "devDependencies": {
 	"@material-ui/core": "^4.6.1",
@@ -30,6 +31,7 @@
 	"node-sass": "^4.13.0",
 	"npm-run-all": "^4.1.5",
 	"rimraf": "^3.0.2",
+	"typedoc": "^0.16.10",
 	"typescript": "3.7.2"
     }
 }

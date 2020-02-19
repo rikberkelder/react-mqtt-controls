@@ -9,17 +9,54 @@ interface MqttSubComponent {
 }
 
 interface MqttComponentProps {
+    /**
+     * The component to use, must have an `onChange(event, value)` prop
+     */
+
     component: React.FC<MqttSubComponent & any>;
+
+    /**
+     * The MQTT topic to I/O on
+     */
+
     topic: any;
+
+    /**
+     * Props to pass to the component
+     */
+
     componentProps?: any;
+
+    /**
+     * The MQTT Publish options
+     */
+
     publishOptions?: IClientPublishOptions;
+
+    /**
+     * when true, disable RBE (repeat by exception) functionality, to disable check if component value actually changed and output regardless. Can cause infinite loops, but is needed for Button components to work.
+     */
+
     noRBE?: boolean;
-    children?: any;
+
+    children: any;
 }
 
+/**
+ * Takes a component with an `onChange(event, value)` method prop and turns it into an MQTT Control. Sets the component's `value` prop to incoming MQTT messages.
+ * This requires a `MqttConnection` component somewhere up the chain
+ * 
+ * ```
+ * <MqttComponent 
+ *   component={Button}
+ *   componentProps={{value: "hello"}} 
+ *   topic="/my/topic/here" 
+ *   publishOptions={{qos: 0, retain: true}} 
+ * />
+ * ```
+ */
 
-
-const MqttComponent: React.FC<MqttComponentProps> = (props: MqttComponentProps)=>{
+export const MqttComponent: React.FC<MqttComponentProps> = (props: MqttComponentProps)=>{
     const mqtt: IMqttContext = useContext(MqttContext);
     const [timesCalled, setTimesCalled] = useState<number>(0);
     const [value, setValue] = useState<any>(null);
@@ -73,5 +110,3 @@ const MqttComponent: React.FC<MqttComponentProps> = (props: MqttComponentProps)=
 	<props.component onChange={onChange} value={value} {...props.componentProps}>{props.children}</props.component>
     </div>)
 }
-
-export default MqttComponent;
