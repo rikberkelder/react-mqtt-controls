@@ -39,7 +39,7 @@ interface MqttComponentProps {
 
     noRBE?: boolean;
 
-    children: any;
+    children?: any;
 }
 
 /**

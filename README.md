@@ -18,7 +18,7 @@ const App = () => {
     return (
 	<MqttConnection config={{url: 'mqtt://localhost:9001'}}>
 	    <MqttComponent
-		compoennt={Button}
+		component={Button}
 		topic="/my/mqtt/topic"
 		componentProps={{
 		    value: "hello"
