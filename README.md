@@ -3,7 +3,7 @@ A collection of React components to interact with MQTT.
 ## Usage
 First of all you need to wrap your app in a `MqttConnection` component, after that, you can use the `MqttComponent` component to turn any component with an `onChange(event, value)`prop into an MQTT connected control.
 
-Documentation [here]{https://rikberkelder.github.com/react-mqtt-controls}
+Documentation [here](https://rikberkelder.github.com/react-mqtt-controls)
 ### Example
 ```typescript
 import React from 'react';
