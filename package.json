@@ -1,6 +1,6 @@
 {
     "name": "react-mqtt-controls",
-    "version": "0.0.7",
+    "version": "0.0.8",
     "private": false,
     "licence": "GPL-3.0",
     "main": "dist/index.js",
